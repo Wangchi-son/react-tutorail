@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import UserList from './UserList';
 
 function App() {
-  return <UserList />;
+  const users = [
+    {
+      id: 1,
+      username: 'verlopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+
+  // id 증가
+  const nextId = useRef(4);
+
+  const onCreate = () => {
+    console.log(nextId.current); // 4
+    nextId.current += 1;
+  };
+
+  return <UserList users={users} />;
 }
 
 export default App;
