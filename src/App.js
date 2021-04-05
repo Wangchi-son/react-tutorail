@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import CreateUser from './CreateUser';
 import UserList from './UserList';
 
@@ -71,7 +71,7 @@ function App() {
     setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
   };
 
-  const count = conutActiveUsers(users);
+  const count = useMemo(() => conutActiveUsers(users), [users]);
 
   return (
     <>
