@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 
 function InputSample() {
-  const [text, setText] = useState('');
+  // 현재 inputs = [name, nickname]
+  const [inputs, setInputs] = useState({
+    name: '',
+    nickname: ''
+  });
+
+  const { name, nickname } = inputs;
 
   const onChange = (e) => {
-    setText(e.target.value);
+    // e.target에서 name, value 값을 추출하고
+    const { name, value } = e.target;
+
+    // ...inputs내의 name이나 nickname을 바꾸겠다 (여기서 [name]은 input 내의 name을 의미함)
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
   };
 
   const onReset = () => {
-    setText('');
+    setInputs({
+      name: '',
+      nickname: ''
+    });
   };
 
   return (
     <div>
-      <input onChange={onChange} value={text} />
+      <input name="name" placeholder="이름: " onChange={onChange} value={name} />
+      <input name="nickname" placeholder="닉네임: " onChange={onChange} value={nickname} />
       <button onClick={onReset}>초기화</button>
       <div>
         <b>값: </b>
-        {text}
+        {name} ({nickname})
       </div>
     </div>
   );
