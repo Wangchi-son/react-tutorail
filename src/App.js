@@ -54,31 +54,25 @@ function App() {
       username,
       email
     };
-    // setUsers([...users, user]); 혹은
-    setUsers(users.concat(user));
+
+    setUsers((users) => users.concat(user));
 
     setInputs({
       username: '',
       email: ''
     });
     nextId.current += 1;
-  }, [username, email, users]);
+  }, [username, email]);
 
   // setUsers로 users를 setting 할때 user(users 내의 값들)가 user.id 와 onremove의
   // 파라미터인 id에서 가져온 id가 같지 않은 것만 filter(조건에 맞는 새로운 배열을 만든다)한다
-  const onRemove = useCallback(
-    (id) => {
-      setUsers(users.filter((user) => user.id !== id));
-    },
-    [users]
-  );
+  const onRemove = useCallback((id) => {
+    setUsers((users) => users.filter((user) => user.id !== id));
+  }, []);
 
-  const onToggle = useCallback(
-    (id) => {
-      setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
-    },
-    [users]
-  );
+  const onToggle = useCallback((id) => {
+    setUsers((users) => users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
+  }, []);
 
   const count = useMemo(() => conutActiveUsers(users), [users]);
 
