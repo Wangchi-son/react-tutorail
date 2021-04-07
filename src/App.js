@@ -48,7 +48,7 @@ function App() {
   // id 증가
   const nextId = useRef(4);
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
     const user = {
       id: nextId.current,
       username,
@@ -62,17 +62,23 @@ function App() {
       email: ''
     });
     nextId.current += 1;
-  };
+  }, [username, email, users]);
 
   // setUsers로 users를 setting 할때 user(users 내의 값들)가 user.id 와 onremove의
   // 파라미터인 id에서 가져온 id가 같지 않은 것만 filter(조건에 맞는 새로운 배열을 만든다)한다
-  const onRemove = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
+  const onRemove = useCallback(
+    (id) => {
+      setUsers(users.filter((user) => user.id !== id));
+    },
+    [users]
+  );
 
-  const onToggle = (id) => {
-    setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
-  };
+  const onToggle = useCallback(
+    (id) => {
+      setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
+    },
+    [users]
+  );
 
   const count = useMemo(() => conutActiveUsers(users), [users]);
 
