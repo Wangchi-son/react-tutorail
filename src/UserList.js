@@ -18,7 +18,6 @@ const User = React.memo(function User({ user }) {
         {username}
       </b>{' '}
       <span>({email})</span>
-      {/* 새로운 함수를 on____에 호출하는 법 */}
       <button
         onClick={() =>
           dispatch({
@@ -28,7 +27,6 @@ const User = React.memo(function User({ user }) {
         }>
         삭제
       </button>
-      {/* onClick={onRemove(id)}로 실행할 경우 렌더와 동시에 모두 삭제됨 */}
     </div>
   );
 });

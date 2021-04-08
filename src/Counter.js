@@ -8,8 +8,6 @@ function reducer(state, action) {
       return state - 1;
     default:
       throw new Error('Unhandled action');
-    // or
-    // state
   }
 }
 

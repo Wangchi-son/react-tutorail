@@ -19,7 +19,6 @@ function reducer(state, action) {
 
 function useInputs(initialForm) {
   const [form, dispatch] = useReducer(reducer, initialForm);
-  //change
   const onChange = useCallback((e) => {
     const { name, value } = e.target;
     dispatch({

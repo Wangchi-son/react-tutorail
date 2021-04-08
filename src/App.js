@@ -68,7 +68,6 @@ export const UserDispatch = createContext(null);
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // 배열 내의 이름은 마음대로 해도 됨
   const [form, onChange, reset] = useInputs({
     username: '',
     email: ''
