@@ -1,19 +1,26 @@
 import React, { createContext, useContext } from 'react';
 
-function Child({ text }) {
+const MyContext = createContext('defaultValue');
+
+function Child() {
+  const text = useContext(MyContext);
   return <div> 안녕하세요? {text}</div>;
 }
 
 function Parent({ text }) {
-  return <Child text={text} />;
+  return <Child />;
 }
 
 function GrandParent({ text }) {
-  return <Parent text={text} />;
+  return <Parent />;
 }
 
 function ContextSample() {
-  return <GrandParent text="GOOD" />;
+  return (
+    <MyContext.Provider value="GOOD">
+      <GrandParent />
+    </MyContext.Provider>
+  );
 }
 
 export default ContextSample;
