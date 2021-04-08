@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useCallback } from 'react';
+import React, { useContext, useRef } from 'react';
 import useInputs from './hooks/useInputs';
 import { UserDispatch } from './App';
 
